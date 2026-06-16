@@ -20,5 +20,5 @@ COPY . .
 # Expose the port the proxy listens on
 EXPOSE 8080
 
-# Start the application directly using Node
-CMD ["node", "src/index.js"]
+# Start the application using the project's native dev wrapper script
+CMD ["pnpm", "run", "dev", "--host", "0.0.0.0", "--port", "8080"]
