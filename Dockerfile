@@ -7,7 +7,7 @@ RUN npm install -g pnpm
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy package files, lockfile, AND the workspace catalog configuration
+# Copy package files, lockfile, and the workspace catalog configuration
 COPY package.json pnpm-lock.yaml* pnpm-workspace.yaml* ./
 COPY patches ./patches
 
@@ -20,5 +20,5 @@ COPY . .
 # Expose the port the proxy listens on
 EXPOSE 8080
 
-# Start the application
-CMD ["pnpm", "start"]
+# Start the application directly using Node
+CMD ["node", "src/index.js"]
