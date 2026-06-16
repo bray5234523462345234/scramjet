@@ -17,8 +17,15 @@ RUN pnpm install
 # Copy the rest of your application code
 COPY . .
 
+# Build the production bundle (compiles files and resolves the extensions)
+RUN pnpm run build
+
 # Expose the port the proxy listens on
 EXPOSE 8080
 
-# Start the application using the project's native dev wrapper script
-CMD ["pnpm", "run", "dev", "--host", "0.0.0.0", "--port", "8080"]
+# Environment variable to make sure it binds to all network interfaces
+ENV HOST=0.0.0.0
+ENV PORT=8080
+
+# Start the built production app
+CMD ["pnpm", "run", "start"]
