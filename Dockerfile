@@ -7,11 +7,11 @@ RUN npm install -g pnpm
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy package files, lockfile, AND the patches directory
-COPY package.json pnpm-lock.yaml* ./
+# Copy package files, lockfile, AND the workspace catalog configuration
+COPY package.json pnpm-lock.yaml* pnpm-workspace.yaml* ./
 COPY patches ./patches
 
-# Install dependencies (now it will find the htmlparser patch file!)
+# Install dependencies
 RUN pnpm install
 
 # Copy the rest of your application code
